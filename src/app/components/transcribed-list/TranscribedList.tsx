@@ -33,25 +33,25 @@ const TranscribedList = ({ audioData, onRemoveAudio }: TranscribedListProps) => 
     }
   };
 
-  const handleAudioStop = (index: number) => {
+  const handleAudioStop = () => {
     setPlayingIndex(null);
   };
 
   useEffect(() => {
     const audioRefsCopy = audioRefs.current;
 
-    audioRefsCopy.forEach((audio, index) => {
+    audioRefsCopy.forEach((audio) => {
       if (audio) {
-        audio.addEventListener('pause', () => handleAudioStop(index));
-        audio.addEventListener('ended', () => handleAudioStop(index));
+        audio.addEventListener('pause', () => handleAudioStop);
+        audio.addEventListener('ended', () => handleAudioStop);
       }
     });
 
     return () => {
-      audioRefsCopy.forEach((audio, index) => {
+      audioRefsCopy.forEach((audio) => {
         if (audio) {
-          audio.removeEventListener('pause', () => handleAudioStop(index));
-          audio.removeEventListener('ended', () => handleAudioStop(index));
+          audio.removeEventListener('pause', () => handleAudioStop);
+          audio.removeEventListener('ended', () => handleAudioStop);
         }
       });
     };
