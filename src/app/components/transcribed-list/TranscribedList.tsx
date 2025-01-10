@@ -65,7 +65,6 @@ const TranscribedList = ({ audioData, onRemoveAudio }: TranscribedListProps) => 
         <div className="flex flex-col overflow-y-auto" style={{ maxHeight: '60vh' }}>
           {audioData.length > 0 ? (
             audioData.map((recording, index) => (
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               <div key={index} className="flex justify-between mt-4 p-8 bg-blue-50 rounded-lg border-2">
                 <div className="w-full flex justify-between items-center">
                   <h3 className="text-xl font-bold text-center">{recording.name}</h3>
