@@ -19,7 +19,7 @@ const AudioControl = ({ onSaveRecording }: AudioControlProps) => {
 
     const mediaRecorderRef = useRef<MediaRecorder | null>(null);
     const audioChunksRef = useRef<Blob[]>([]);
-    const intervalRef = useRef<any>(null);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const mediaStreamRef = useRef<MediaStream | null>(null);
     const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
@@ -83,7 +83,7 @@ const AudioControl = ({ onSaveRecording }: AudioControlProps) => {
         if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
             mediaRecorderRef.current.stop();
             setIsRecording(false);
-            clearInterval(intervalRef.current);
+            if (intervalRef.current) clearInterval(intervalRef.current);
 
             if (mediaStreamRef.current) {
                 mediaStreamRef.current.getTracks().forEach((track) => {

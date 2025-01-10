@@ -38,16 +38,17 @@ const TranscribedList = ({ audioData, onRemoveAudio }: TranscribedListProps) => 
   };
 
   useEffect(() => {
-    
-    audioRefs.current.forEach((audio, index) => {
+    const audioRefsCopy = audioRefs.current;
+
+    audioRefsCopy.forEach((audio, index) => {
       if (audio) {
         audio.addEventListener('pause', () => handleAudioStop(index));
         audio.addEventListener('ended', () => handleAudioStop(index));
       }
     });
-    
+
     return () => {
-      audioRefs.current.forEach((audio, index) => {
+      audioRefsCopy.forEach((audio, index) => {
         if (audio) {
           audio.removeEventListener('pause', () => handleAudioStop(index));
           audio.removeEventListener('ended', () => handleAudioStop(index));

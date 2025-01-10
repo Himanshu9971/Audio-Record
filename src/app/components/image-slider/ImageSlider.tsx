@@ -36,7 +36,7 @@ const ImageSlider = () => {
         }, 5000)
 
         return () => clearInterval(intervalId)
-    }, [])
+    }, [imageData.length])
 
     return (
         <div className='flex flex-col items-center w-full max-w-1/2 border-2 p-8 border-gray-200 rounded-3xl'>
